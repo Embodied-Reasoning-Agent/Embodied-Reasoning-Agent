@@ -1,0 +1,9 @@
+env1:
+    env_name: alfred
+    env_config:
+      image_mode: "always"
+      image_interval: 1
+    train_size: 15000  
+    test_size: 100
+
+

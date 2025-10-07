@@ -1,0 +1,8 @@
+defaults:
+  - _self_
+
+server:
+  host: 0.0.0.0
+  port: 22220
+  debug: false
+
