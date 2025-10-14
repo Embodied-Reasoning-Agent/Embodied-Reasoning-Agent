@@ -1,5 +1,4 @@
 datasets:
-  # web
-  - json_path: /u/ry21/high_level_grounding_draft/grounding_data/test.json
+  - json_path: PATH_TO_YOUR_DATASET
     images_folder: ""
     sampling_strategy: "all"

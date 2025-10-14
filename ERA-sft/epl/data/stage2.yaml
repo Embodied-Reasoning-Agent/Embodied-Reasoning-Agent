@@ -1,8 +1,4 @@
 datasets:
-  # website 
-  - json_path: /projects/illinois/eng/ece/huanz/era/eb_alfred_sft/eb_alfred_sft_single_step_reasoning_dataset_success_episodes_history_steps_3_visual+action.json
-  #/projects/illinois/eng/ece/huanz/era/eb_man_sft/eb_man_sft_single_step_reasoning_dataset_success_episodes_history_steps_5_lang+action.json
-  #/projects/illinois/eng/ece/huanz/era/eb_alfred_sft/eb_alfred_sft_single_step_reasoning_dataset_success_episodes_history_steps_5_only_reflection_in_thinking.json
-  #/projects/illinois/eng/ece/huanz/era/eb_man_sft/eb_man_sft_single_step_reasoning_dataset_success_episodes_history_steps_3_self-sum-only-reflection.json
+  - json_path: PATH_TO_YOUR_DATASET
     images_folder: ""
     sampling_strategy: "all"
