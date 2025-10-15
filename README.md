@@ -43,19 +43,19 @@
 # 📋 Table of Contents
 
 - [🎓 Embodied Prior Learning (EPL)](#-embodied-prior-learning-epl)
-  - [Setup](#setup)
-  - [Dataset Preparation](#dataset-preparation)
-  - [Training](#training)
+  - [EPL Setup](#epl-setup)
+  - [EPL Dataset Preparation](#epl-dataset-preparation)
+  - [EPL Training](#epl-training)
 - [🚀 Reinforcement Learning (RL)](#-reinforcement-learning-rl)
-  - [Setup](#setup)
-  - [Dataset Preparation](#dataset-preparation)
-  - [Training](#training)
+  - [RL Setup](#rl-setup)
+  - [RL Dataset Preparation](#rl-dataset-preparation)
+  - [RL Training](#rl-training)
 
 ---
 
 # 🎓 Embodied Prior Learning (EPL)
 
-## Setup
+## EPL Setup
 
 Download repo:
 
@@ -72,7 +72,7 @@ conda env create -f environment.yaml
 conda activate era-epl-env
 ```
 
-## Dataset Preparation
+## EPL Dataset Preparation
 
 1. **Environment-Anchored Prior Dataset**
 
@@ -87,7 +87,7 @@ Note: Place either the environment-anchored prior data or the external knowledge
    - Download the dataset from [EB-Man_trajectory_augmented_prior_dataset](https://huggingface.co/datasets/EmbodiedReasoningAgent/EB-Man_trajectory_augmented_prior_dataset) and [EB-ALFRED_trajectory_augmented_prior_dataset](https://huggingface.co/datasets/EmbodiedReasoningAgent/EB-ALFRED_trajectory_augmented_prior_dataset)
    - Place the data according to the structure defined in [`ERA-sft/epl/data/stage2.yaml`](./ERA-sft/epl/data/stage2.yaml)
 
-## Training
+## EPL Training
 
 1. Configure your training settings:
 
@@ -110,10 +110,14 @@ bash scripts/train.sh
 
 # 🚀 Reinforcement Learning (RL)
 
-## Setup
+## RL Setup
 
 Coming soon...
 
-## Training
+## RL Dataset Preparation
+
+Coming soon...
+
+## RL Training
 
 Coming soon...
