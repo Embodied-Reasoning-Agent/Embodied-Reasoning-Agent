@@ -40,25 +40,45 @@
   <img src="docs/images/framework.png" width="100%" alt="ERA Framework">
 </p>
 
-# 🖥️ Setup
-Download repo
+# 📋 Table of Contents
+
+- [🎓 Embodied Prior Learning (EPL)](#-embodied-prior-learning-epl)
+  - [Setup](#setup)
+  - [Dataset Preparation](#dataset-preparation)
+  - [Training](#training)
+- [🚀 Reinforcement Learning (RL)](#-reinforcement-learning-rl)
+  - [Setup](#setup)
+  - [Dataset Preparation](#dataset-preparation)
+  - [Training](#training)
+
+---
+
+# 🎓 Embodied Prior Learning (EPL)
+
+## Setup
+
+Download repo:
+
 ```bash
 git clone git@github.com:Embodied-Reasoning-Agent/Embodied-Reasoning-Agent.git
 cd Embodied-Reasoning-Agent
 ```
 
-1️⃣ Environment for ```Embodied Prior Learning (EPL)```
+Environment setup:
+
 ```bash
 cd ERA-sft
 conda env create -f environment.yaml 
 conda activate era-epl-env
 ```
-# Dataset Preparation
+
+## Dataset Preparation
 
 1. **Environment-Anchored Prior Dataset**
-   - Download the dataset from [EB-Man_environment_anchored_prior_dataset](https://huggingface.co/datasets/EmbodiedReasoningAgent/EB-Man_environment_anchored_prior_dataset) and [EB-ALFRED_environment_anchored_prior_dataset](https://huggingface.co/datasets/EmbodiedReasoningAgent/EB-ALFRED_environment_anchored_prior_dataset)
 
+   - Download the dataset from [EB-Man_environment_anchored_prior_dataset](https://huggingface.co/datasets/EmbodiedReasoningAgent/EB-Man_environment_anchored_prior_dataset) and [EB-ALFRED_environment_anchored_prior_dataset](https://huggingface.co/datasets/EmbodiedReasoningAgent/EB-ALFRED_environment_anchored_prior_dataset)
 2. **External Knowledge Prior Dataset**
+
    - Download the dataset from [EB-Man_external_knowledge_prior_dataset](https://huggingface.co/datasets/EmbodiedReasoningAgent/EB-Man_external_knowledge_prior_dataset) and [EB-ALFRED_external_knowledge_prior_dataset](https://huggingface.co/datasets/EmbodiedReasoningAgent/EB-ALFRED_external_knowledge_prior_dataset)
 
 Note: Place either the environment-anchored prior data or the external knowledge prior data according to the structure defined in [`ERA-sft/epl/data/stage1.yaml`](./ERA-sft/epl/data/stage1.yaml)
@@ -67,23 +87,33 @@ Note: Place either the environment-anchored prior data or the external knowledge
    - Download the dataset from [EB-Man_trajectory_augmented_prior_dataset](https://huggingface.co/datasets/EmbodiedReasoningAgent/EB-Man_trajectory_augmented_prior_dataset) and [EB-ALFRED_trajectory_augmented_prior_dataset](https://huggingface.co/datasets/EmbodiedReasoningAgent/EB-ALFRED_trajectory_augmented_prior_dataset)
    - Place the data according to the structure defined in [`ERA-sft/epl/data/stage2.yaml`](./ERA-sft/epl/data/stage2.yaml)
 
-# Embodied Prior Learning Training 
+## Training
 
 1. Configure your training settings:
+
 ```bash
 cd epl
 ```
 
-   - Open `scripts/train.sh`
-   - Set the `SFT_TASK` variable to specify your training stage
-   - Set the `SAVE_DIR` variable to specify path to your saving directory
-   - Set the `IMAGE_FOLDER` variable to specify path to your image folder
+- Open `scripts/train.sh`
+- Set the `SFT_TASK` variable to specify your training stage
+- Set the `SAVE_DIR` variable to specify path to your saving directory
+- Set the `IMAGE_FOLDER` variable to specify path to your image folder
 
-3. Start training:
+2. Start training:
+
 ```bash
 bash scripts/train.sh
 ```
 
+---
 
+# 🚀 Reinforcement Learning (RL)
 
+## Setup
 
+Coming soon...
+
+## Training
+
+Coming soon...
