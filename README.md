@@ -313,4 +313,62 @@ The environment server needs to be started in a separate tmux session. Follow th
 
 ### 2. Running the RL Training Algorithm
 
-Coming soon...
+Once the environment server is running, you can start the RL training algorithm client in a separate terminal or tmux session.
+
+#### Starting Training
+
+Navigate to the corresponding environment directory and run the training script:
+
+```bash
+cd ERA-rl/VAGEN/vagen/examples/<env_name>  # Replace <env_name> with 'alfred' or 'ebman'
+bash run.sh
+```
+
+#### Important Configuration Parameters
+
+Before running the training, you should modify the `run.sh` file to configure the following key parameters:
+
+1. **Parallel Rollout Batch Size** (`data.train_batch_size`)
+   
+   This parameter specifies how many tasks will be rolled out in parallel during each rollout iteration.
+   ```bash
+   data.train_batch_size=50  # Example: 50 tasks in parallel
+   ```
+
+2. **Maximum Steps per Task** (`rollout_manager.max_turns`)
+   
+   This defines the maximum number of steps/turns for each task during rollout.
+   ```bash
+   rollout_manager.max_turns=30  # Example: 30 steps per task
+   ```
+
+3. **Total Training Iterations** (`trainer.total_training_steps`)
+   
+   This specifies the number of rollout iterations. Each iteration will roughly collect `batch_size × max_turns` transitions (s, a, s', r).
+   ```bash
+   trainer.total_training_steps=15  # Example: 15 rollout iterations
+   ```
+
+4. **Model Paths and Save Directory**
+   
+   Configure the paths for your actor model, critic model, and checkpoint save directory:
+   ```bash
+   actor_rollout_ref.model.path="your_actor_path"       # Path to actor model
+   critic.model.path="your_critic_path"                 # Path to critic model
+   trainer.default_local_dir="your_local_dir"           # Directory to save checkpoints
+   trainer.project_name='your_project_name'             # WandB project name
+   trainer.experiment_name='your_experiment_name'       # WandB experiment name
+   ```
+
+5. **Environment Server URL** (`rollout_manager.base_url`) **[CRITICAL]**
+   
+   **Set this to match the server address you configured in Part 1.** Use the format `http://IP:PORT`.
+   
+   ```bash
+   rollout_manager.base_url="http://localhost:5000"  # Example: adjust IP and port accordingly
+   ```
+   
+   Make sure this URL matches:
+   - The IP address where your environment server is running
+   - The port number you set in `ERA-rl/VAGEN/vagen/server/server.yaml`
+
