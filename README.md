@@ -120,6 +120,8 @@ bash scripts/train.sh
 
 Note that since we are working with online reinforcement learning, so there are inevitably two parts of workflow: **1. The RL Training Algorithm** and **2. The RL Environment**. We have seperate **code/environment** for these two parts. Another important thing is, we adopt **Parrallel Rollout** in this framework, implemented in a server-client manner, and we will talk about it in [RL Training](#rl-training). Now, we will first talk about setup the running environment for these two parts.
 
+## Setup
+
 ### 1. Setting up the environment for RL Training Algorithm
 
 Install the RL training framework in a virtual environment:
@@ -136,7 +138,7 @@ deactivate  # you can now de-activate the env to setup other env
 
 We support two embodied environments from EmbodiedBench: **EB-ALFRED** and **EB-Manipulation**. Follow the instructions below to set up each environment.
 
-> Note that this line: ```cd ERA-rl/VAGEN/vagen/env/Embench_new``` in the following is very important, since the codebase is rather nested, it keeps you in the right place for installation.
+> Note that this line: ``cd ERA-rl/VAGEN/vagen/env/Embench_new`` in the following is very important, since the codebase is rather nested, it keeps you in the right place for installation.
 
 #### 2.1. EB-ALFRED Environment
 
@@ -152,11 +154,13 @@ pip install -e .
 **2.1.2 Additional Installation**
 
 Download dataset from huggingface.
+
 ```bash
 conda activate embench
 git clone https://huggingface.co/datasets/EmbodiedBench/EB-ALFRED
 mv EB-ALFRED embodiedbench/envs/eb_alfred/data/json_2.1.0
 ```
+
 Run the following code to ensure the EB-ALFRED environment is working correctly. `Remember to start headless server.`
 
 ```bash
@@ -198,10 +202,11 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$COPPELIASIM_ROOT
 export QT_QPA_PLATFORM_PLUGIN_PATH=$COPPELIASIM_ROOT
 ```
 
-> Remember to source your bashrc (`source ~/.bashrc`) or 
-zshrc (`source ~/.zshrc`) after this.
+> Remember to source your bashrc (`source ~/.bashrc`) or
+> zshrc (`source ~/.zshrc`) after this.
 
 * Install the PyRep, EB-Manipulation package and dataset:
+
 ```bash
 git clone https://github.com/stepjam/PyRep.git
 cd PyRep
@@ -220,6 +225,7 @@ cd ../../..
 > Remember that whenever you re-install the PyRep, simAddOnScript_PyRep.lua will be overwritten. Then, you should copy this again.
 
 * Run the following code to ensure the EB-Manipulation is working correctly (start headless server if you have not):
+
 ```bash
 conda activate embench_man
 export DISPLAY=:1
@@ -232,10 +238,79 @@ python -m embodiedbench.envs.eb_manipulation.EBManEnv
 
 ## RL Dataset Preparation
 
-Since the dataset preparation in online, simulator-based RL basically can be translated to the initial state(or task ID) to start with(mostly heavy-lifting is done by the simulator), we just have to specify the sequence of task ID here.
+Since the dataset preparation in online, simulator-based RL basically can be translated to the initial state (or task ID) to start with (mostly heavy-lifting is done by the simulator), we just have to specify the sequence of task IDs here.
 
+The configuration process is **the same for both environments** (EB-ALFRED and EB-Manipulation):
 
+1. Navigate to the environment's configuration file:
+
+   - **For EB-ALFRED**: `ERA-rl/VAGEN/vagen/env/alfred/alfred_env_config_for_vagen.py`
+   - **For EB-Manipulation**: `ERA-rl/VAGEN/vagen/env/ebman/ebman_env_config_for_vagen.py`
+2. Modify the `generate_seed` function to customize the task ID sequence according to your training needs.
 
 ## RL Training
+
+The RL training workflow consists of **two parts**: the **RL Environment Server** and the **RL Training Algorithm Client**. We adopt a **parallel rollout** mechanism implemented in a server-client manner for efficient training.
+
+### 1. Setting up the RL Environment Server
+
+The environment server needs to be started in a separate tmux session. Follow the instructions below based on your chosen environment.
+
+#### For EB-ALFRED Environment
+
+1. **Activate the environment:**
+
+   ```bash
+   conda activate embench
+   ```
+2. **Configure the environment initialization:**
+
+   Edit `ERA-rl/VAGEN/vagen/env/Embench_new/__init__.py` to **ONLY Inlcude** the ALFRED environment:
+
+   ```python
+   from .alfred_env_for_vagen import AlfredEnv
+   from .alfred_env_service import AlfredService
+   from .alfred_env_config_for_vagen import AlfredEnvConfig
+   ```
+3. **Set the server port:**
+
+   Modify the `port` field in `ERA-rl/VAGEN/vagen/server/server.yaml` to your desired port number.
+4. **Start the server:**
+
+   ```bash
+   cd ERA-rl/VAGEN/vagen/server
+   python server.py
+   ```
+
+#### For EB-Manipulation Environment
+
+1. **Activate the environment:**
+
+   ```bash
+   conda activate embench_man
+   ```
+2. **Configure the environment initialization:**
+
+   Edit `ERA-rl/VAGEN/vagen/env/Embench_new/__init__.py` to **ONLY Inlcude** the Manipulation environment:
+
+   ```python
+   from .mani_env import EBManipulationEnv
+   from .mani_env_service import EBManipulationService
+   from .mani_env_config import EBManipulationEnvConfig
+   ```
+3. **Set the server port:**
+
+   Modify the `port` field in `ERA-rl/VAGEN/vagen/server/server.yaml` to your desired port number.
+4. **Start the server:**
+
+   > **⚠️ Important:** For EB-Manipulation, you **must** start the server from the `Embench_new` directory due to absolute path dependencies in the environment.
+   >
+
+   ```bash
+   cd ERA-rl/VAGEN/vagen/env/Embench_new
+   python ../../server/server.py
+   ```
+
+### 2. Running the RL Training Algorithm
 
 Coming soon...
