@@ -1,0 +1,4 @@
+datasets:
+  - json_path: PATH_TO_YOUR_DATASET
+    images_folder: "" # always set this to ""(empty string), this is just for compatibility.
+    sampling_strategy: "all"

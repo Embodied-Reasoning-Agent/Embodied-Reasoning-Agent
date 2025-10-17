@@ -61,7 +61,7 @@ ERA takes a **two-stage approach.** Stage 1: Infuse **foundational capabilities*
 
 # 🎓 Stage 1: Embodied Prior Learning (EPL)
 
-## EPL Setup
+## EPL Environment Setup
 
 Download repo:
 
@@ -78,7 +78,7 @@ conda env create -f environment.yaml
 conda activate era-epl-env
 ```
 
-## EPL Dataset Preparation
+## EPL Dataset Download
 
 1. **Environment-Anchored Prior Dataset**
 
@@ -95,16 +95,20 @@ Note: Place either the environment-anchored prior data or the external knowledge
 
 ## EPL Training
 
+**We adopt stage-wise training on these datasets**(that is, training on a dataset at a stage). You can train on them in any sequence you desire, and we recommend two choice of sequence: 1. first training on Environment-Anchored Prior Dataset and then on Trajectory-Augmented Prior Dataset 2. first on External-Knowledge Prior Dataset and then on Trajectory-Augmented Prior Dataset.
+
+Below we will show how to train on any dataset for a single stage.
+
 1. Configure your training settings:
 
 ```bash
 cd epl
 ```
+> ‼️ There are 2 important argument in two files to set clearly to correctly conduct the training:
 
-- Open `scripts/train.sh`
-- Set the `SFT_TASK` variable to specify your training stage
-- Set the `SAVE_DIR` variable to specify path to your saving directory
-- Set the `IMAGE_FOLDER` variable to specify path to your image folder
+- 1. `json_path` In `ERA-sft/epl/data/stage.yaml`: Use variable to specify the path of your json data file.
+- 2. `IMAGE_FOLDER` In `ERA-sft/epl/scripts/train.sh`: Clearly set this variables, **such that `IMAGE_FOLDER`+`img_path variable in your json data file`(concatenation) can correctly points to where your actual img exists.**
+
 
 2. Start training:
 
@@ -329,29 +333,30 @@ bash run.sh
 Before running the training, you should modify the `run.sh` file to configure the following key parameters:
 
 1. **Parallel Rollout Batch Size** (`data.train_batch_size`)
-   
+
    This parameter specifies how many tasks will be rolled out in parallel during each rollout iteration.
+
    ```bash
    data.train_batch_size=50  # Example: 50 tasks in parallel
    ```
-
 2. **Maximum Steps per Task** (`rollout_manager.max_turns`)
-   
+
    This defines the maximum number of steps/turns for each task during rollout.
+
    ```bash
    rollout_manager.max_turns=30  # Example: 30 steps per task
    ```
-
 3. **Total Training Iterations** (`trainer.total_training_steps`)
-   
+
    This specifies the number of rollout iterations. Each iteration will roughly collect `batch_size × max_turns` transitions (s, a, s', r).
+
    ```bash
    trainer.total_training_steps=15  # Example: 15 rollout iterations
    ```
-
 4. **Model Paths and Save Directory**
-   
+
    Configure the paths for your actor model, critic model, and checkpoint save directory:
+
    ```bash
    actor_rollout_ref.model.path="your_actor_path"       # Path to actor model
    critic.model.path="your_critic_path"                 # Path to critic model
@@ -359,16 +364,14 @@ Before running the training, you should modify the `run.sh` file to configure th
    trainer.project_name='your_project_name'             # WandB project name
    trainer.experiment_name='your_experiment_name'       # WandB experiment name
    ```
-
 5. **Environment Server URL** (`rollout_manager.base_url`) **[CRITICAL]**
-   
+
    **Set this to match the server address you configured in Part 1.** Use the format `http://IP:PORT`.
-   
+
    ```bash
    rollout_manager.base_url="http://localhost:5000"  # Example: adjust IP and port accordingly
    ```
-   
    Make sure this URL matches:
+
    - The IP address where your environment server is running
    - The port number you set in `ERA-rl/VAGEN/vagen/server/server.yaml`
-
