@@ -23,6 +23,7 @@ class AlfredEnvConfig(BaseEnvConfig):
             random.shuffle(group)
             train_seeds.extend(group)
         print("Generated train seeds:", train_seeds[:10], "...")  # Print first 10 seeds for verification
+        train_seeds = train_seeds[:train_size]
 
         test_seeds = list(range(100, 150)) + list(range(200, 250))
 

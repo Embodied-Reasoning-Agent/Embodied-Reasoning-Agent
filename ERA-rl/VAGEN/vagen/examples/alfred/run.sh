@@ -76,7 +76,7 @@ python3 -m vagen.trainer.main_ppo \
     +trainer.test_start=0 \
     trainer.total_training_steps=15 \
     trainer.default_local_dir="your_local_dir" \
-    rollout_manager.max_turns=3 \
+    rollout_manager.max_turns=30 \
     +rollout_manager.val_max_turns=3 \
     rollout_manager.window_size=1 \
     rollout_manager.use_multi_turn_reward=True \
