@@ -74,8 +74,8 @@ Environment setup:
 
 ```bash
 cd ERA-sft
-conda env create -f environment.yaml 
-conda activate era-epl-env
+conda env create -f environment_epl.yaml 
+conda activate era-env-epl
 ```
 
 ## EPL Dataset Download
