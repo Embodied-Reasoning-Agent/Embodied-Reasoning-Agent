@@ -375,3 +375,25 @@ Before running the training, you should modify the `run.sh` file to configure th
 
    - The IP address where your environment server is running
    - The port number you set in `ERA-rl/VAGEN/vagen/server/server.yaml`
+
+
+
+  # Citations
+```
+@article{chen2025era,
+  title={ERA: Transforming VLMs into Embodied Agents via Embodied Prior Learning and Online Reinforcement Learning},
+  author={Chen, Hanyang and Zhao, Mark and Yang, Rui and Ma, Qinwei and Yang, Ke and Yao, Jiarui and Wang, Kangrui and Bai, Hao and Wang, Zhenhailong and Pan, Rui and others},
+  journal={arXiv preprint arXiv:2510.12693},
+  year={2025}
+}
+```
+```
+@inproceedings{
+yang2025embodiedbench,
+title={EmbodiedBench: Comprehensive Benchmarking Multi-modal Large Language Models for Vision-Driven Embodied Agents},
+author={Rui Yang and Hanyang Chen and Junyu Zhang and Mark Zhao and Cheng Qian and Kangrui Wang and Qineng Wang and Teja Venkat Koripella and Marziyeh Movahedi and Manling Li and Heng Ji and Huan Zhang and Tong Zhang},
+booktitle={Forty-second International Conference on Machine Learning},
+year={2025},
+url={https://openreview.net/forum?id=DgGF2LEBPS}
+}
+```
