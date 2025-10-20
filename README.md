@@ -379,6 +379,7 @@ Before running the training, you should modify the `run.sh` file to configure th
 
 
   # Citations
+  If you find our work helpful for your research, please cite:
 ```
 @article{chen2025era,
   title={ERA: Transforming VLMs into Embodied Agents via Embodied Prior Learning and Online Reinforcement Learning},
