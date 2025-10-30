@@ -134,7 +134,7 @@ class EBAlfEnv(gym.Env):
         # env feedback and image save
         # feedback verbosity, 0: concise, 1: verbose
         self.feedback_verbosity = 0
-        self.log_path = '/srv/local/markyyds/running/eb_alfred/{}'.format(exp_name)
+        self.log_path = 'running/eb_alfred/{}'.format(exp_name)
 
         self.detection = detection_box # add detection in image
         self.name_to_id_dict = None

@@ -115,7 +115,7 @@ class EBManEnv(gym.Env):
                 self._gym_cam.set_render_mode(RenderMode.OPENGL3)
 
         if log_path is None:
-            self.log_path = '/srv/local/markyyds/running/eb_manipulation/{}'.format(eval_set)
+            self.log_path = 'running/eb_manipulation/{}'.format(eval_set)
         else:
             self.log_path = log_path
     
