@@ -134,7 +134,10 @@ Install the RL training framework in a virtual environment:
 cd ERA-rl
 python -m venv era-rl-env
 source era-rl-env/bin/activate  # On Windows: era-rl-env\Scripts\activate
-pip install -r requirement.txt
+cd verl
+pip install -e .
+cd ../VAGEN
+bash scripts/install.sh
 deactivate  # you can now de-activate the env to setup other env
 ```
 
