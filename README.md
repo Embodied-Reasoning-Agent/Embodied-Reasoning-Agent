@@ -137,7 +137,7 @@ source era-rl-env/bin/activate  # On Windows: era-rl-env\Scripts\activate
 cd verl
 pip install -e .
 cd ../VAGEN
-bash scripts/install.sh
+bash install.sh
 deactivate  # you can now de-activate the env to setup other env
 ```
 
