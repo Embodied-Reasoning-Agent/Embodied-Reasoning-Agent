@@ -169,6 +169,7 @@ algorithm:
   kl_ctrl:
     type: fixed
     kl_coef: 0.001
+  return_based_discount_factor: 0.8
 
 trainer:
   balance_batch: True

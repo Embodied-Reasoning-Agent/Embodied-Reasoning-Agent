@@ -814,7 +814,7 @@ class QwenVLRolloutManagerService():
         #         effective_max_turns = int(start_horizon + 2 * horizon_delta)
         # effective_max_turns = max(1, effective_max_turns)
 
-        if self.config.adaptive_max_turns:
+        if getattr(self.config, 'adaptive_max_turns', False): #self.config.adaptive_max_turns:
             effective_max_turns = self._get_rollout_horizon(global_steps)
         else:
             effective_max_turns = self.config.max_turns
