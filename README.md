@@ -391,6 +391,7 @@ Before running the training, you should modify the `run.sh` file to configure th
   year={2025}
 }
 ```
+
 ```
 @inproceedings{
 yang2025embodiedbench,
