@@ -328,6 +328,7 @@ Navigate to the corresponding environment directory and run the training script:
 
 ```bash
 cd ERA-rl/VAGEN/vagen/examples/<env_name>  # Replace <env_name> with 'alfred' or 'ebman'
+conda activate era-rl-env
 bash run.sh
 ```
 
